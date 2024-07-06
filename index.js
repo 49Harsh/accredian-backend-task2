@@ -23,6 +23,10 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello from your backend!');
+});
+
 // API Endpoint
 app.post('/api/referrals', (req, res) => {
   const { referrerName, referrerEmail, refereeName, refereeEmail, course } = req.body;
