@@ -55,9 +55,6 @@ app.get('/', (req, res) => {
     res.send('Hello from your backend!');
 });
 
-app.use(cors({
-  origin: 'http://localhost:3000/' // Replace with your frontend URL
-}));
 
 // API Endpoint
 app.post('/api/referrals', (req, res) => {
