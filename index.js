@@ -10,11 +10,17 @@ app.use(bodyParser.json());
 
 // MySQL Connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '49@Harosh',
-  database: 'referral_db'
+  host: 'sql12.freesqldatabase.com',
+  user: 'sql12720924',
+  password: 'YWe9Gdxeac',
+  database: 'sql12720924'
 });
+
+// Host: sql12.freesqldatabase.com
+// Database name: sql12720924
+// Database user: sql12720924
+// Database password: YWe9Gdxeac
+// Port number: 3306
 
 db.connect((err) => {
   if (err) {
@@ -22,6 +28,28 @@ db.connect((err) => {
   }
   console.log('Connected to MySQL database');
 });
+
+const createTableSQL = `
+CREATE TABLE IF NOT EXISTS referrals (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  referrer_name VARCHAR(255) NOT NULL,
+  referrer_email VARCHAR(255) NOT NULL,
+  referee_name VARCHAR(255) NOT NULL,
+  referee_email VARCHAR(255) NOT NULL,
+  course VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+`;
+
+db.query(createTableSQL, (err, result) => {
+if (err) {
+  console.error('Error creating table:', err);
+} else {
+  console.log('Referrals table created or already exists');
+}
+});
+
+
 
 app.get('/', (req, res) => {
     res.send('Hello from your backend!');
